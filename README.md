@@ -1,4 +1,4 @@
-## 🏗️ Architecture
+## 🏗️ 프로젝트 아키텍쳐
 
 본 프로젝트는 **FSD (Feature-Sliced Design)** 구조를 기반으로 설계하였습니다.
 
@@ -8,3 +8,7 @@
 - **features/**: 사용자의 액션 단위 기능
 - **entities/**: 비즈니스 모델
 - **shared/**: 재사용 가능한 공용 컴포넌트 및 유틸리티
+
+## 🧱 구현한 주요 요소 설명
+
+- **상단 배너(features/banner)**
