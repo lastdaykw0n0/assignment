@@ -1,4 +1,4 @@
-import BannerSlider from '@/widgets/BannerSlider/ui/BannerSlider';
+import BannerSlider from '@/widgets/banner-slider/ui/BannerSlider';
 
 function DiscoveryPage() {
   return (
