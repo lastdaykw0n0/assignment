@@ -1,5 +1,11 @@
+import BannerSlider from '@/widgets/BannerSlider/ui/BannerSlider';
+
 function DiscoveryPage() {
-  return <div>DiscoveryPage</div>;
+  return (
+    <>
+      <BannerSlider />
+    </>
+  );
 }
 
 export default DiscoveryPage;

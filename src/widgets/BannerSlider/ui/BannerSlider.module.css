@@ -1,0 +1,72 @@
+.bannerSlider {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+}
+
+.bannerSlider::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.bannerItem {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+  position: relative;
+  min-width: 100%;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  height: auto;
+
+  p {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    font-size: 20px;
+    color: white;
+    background: none;
+    border-radius: 0;
+    max-width: 300px;
+    word-wrap: break-word;
+    line-height: 1.4;
+  }
+
+  button {
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+    padding: 8px 14px;
+    background-color: white;
+    color: black;
+    font-size: 18px;
+    font-weight: 500;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    text-align: center;
+  }
+
+  button:hover {
+    background-color: #f0f0f0;
+  }
+}
+
+.bannerImage {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.bannerIndex {
+  position: absolute;
+  bottom: 20px;
+  right: 30px;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 16px;
+}
