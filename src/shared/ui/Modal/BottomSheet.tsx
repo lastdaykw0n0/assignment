@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './BottomSheet.module.css';
 import type { Nullable } from '@/shared/types';
 import { useI18n } from '@/app/providers/i18n';
+import { OptimizedImage } from '@/shared/ui/OptimizedImage';
 
 interface BottomSheetProps {
   open: boolean;
@@ -36,7 +37,7 @@ export const BottomSheet: React.FC<BottomSheetProps> = ({
       <div className={styles.sheet} onClick={(e) => e.stopPropagation()}>
         <div className={styles.header}>
           {imageUrl && (
-            <img
+            <OptimizedImage
               src={imageUrl}
               alt={title}
               className={styles.icon}

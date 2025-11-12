@@ -2,6 +2,7 @@ import styles from './BannerSlider.module.css';
 import { useBanners } from '@/entities/banner-slider/model/useBanners';
 import { openLink } from '@/shared/utils/openLink';
 import { useI18n } from '@/app/providers/i18n';
+import { OptimizedImage } from '@/shared/ui/OptimizedImage';
 
 export default function BannerSlider() {
   const { data: banners, isLoading } = useBanners();
@@ -19,7 +20,7 @@ export default function BannerSlider() {
           className={styles.bannerItem}
           onClick={() => openLink(banner.link[lang])}
         >
-          <img
+          <OptimizedImage
             src={banner.image[lang]}
             alt={banner.description?.[lang] ?? ''}
             className={styles.bannerImage}

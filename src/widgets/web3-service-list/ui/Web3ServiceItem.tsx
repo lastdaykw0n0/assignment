@@ -1,6 +1,7 @@
 import styles from './Web3ServiceItem.module.css';
 import type { Web3ServiceItem } from '@/entities/web3-service/model/web3Service.types';
 import { useI18n } from '@/app/providers/i18n';
+import { OptimizedImage } from '@/shared/ui/OptimizedImage';
 
 type Props = {
   item: Web3ServiceItem;
@@ -14,7 +15,7 @@ export function Web3ServiceItem({ item, onClick }: Props) {
   return (
     <li className={styles.container} onClick={onClick}>
       <div className={styles.iconWrapper}>
-        <img
+        <OptimizedImage
           src={item.icon}
           alt={item.title}
           className={styles.icon}

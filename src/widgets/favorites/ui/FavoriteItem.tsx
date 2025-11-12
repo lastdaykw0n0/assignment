@@ -1,6 +1,7 @@
 import styles from './FavoriteItem.module.css';
 import type { FavoriteItem } from '@/entities/favorite/model/favorite.types';
 import { useI18n } from '@/app/providers/i18n';
+import { OptimizedImage } from '@/shared/ui/OptimizedImage';
 
 type Props = {
   item: FavoriteItem;
@@ -13,12 +14,14 @@ export function FavoriteItem({ item, onDeleteClick }: Props) {
   return (
     <li className={styles.container}>
       <div className={styles.info}>
-        <img
-          src={item.icon}
-          alt={item.title}
-          className={styles.icon}
-          loading="lazy"
-        />
+        {item.icon && (
+          <OptimizedImage
+            src={item.icon}
+            alt={item.title}
+            className={styles.icon}
+            loading="lazy"
+          />
+        )}
 
         <div className={styles.textWrapper}>
           <p className={styles.title}>{item.title}</p>
