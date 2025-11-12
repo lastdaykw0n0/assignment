@@ -1,0 +1,112 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  z-index: 1000;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.sheet {
+  width: 100%;
+  max-width: 640px;
+  background: white;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  padding: 28px 24px 40px;
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.15);
+  animation: slideUp 0.25s ease-out;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.textGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.subtitle {
+  font-size: 16px;
+  color: #8a8a8a;
+  margin: 2px 0;
+}
+
+.url {
+  font-size: 15px;
+  color: #007aff;
+  text-decoration: none;
+  margin-top: 4px;
+  overflow-wrap: anywhere;
+}
+
+.descriptionBox {
+  margin-top: 28px;
+}
+
+.sectionTitle {
+  font-size: 17px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.description {
+  font-size: 15px;
+  color: #5c5c5c;
+  line-height: 1.5;
+}
+
+.goButton {
+  width: 100%;
+  background-color: #00b66d;
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+  padding: 14px 0;
+  border: none;
+  border-radius: 28px;
+  margin-top: 32px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.goButton:hover {
+  background-color: #00a663;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(40px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
