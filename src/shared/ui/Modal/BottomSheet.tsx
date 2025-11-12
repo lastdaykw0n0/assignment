@@ -33,7 +33,12 @@ export const BottomSheet: React.FC<BottomSheetProps> = ({
       <div className={styles.sheet} onClick={(e) => e.stopPropagation()}>
         <div className={styles.header}>
           {imageUrl && (
-            <img src={imageUrl} alt={title} className={styles.icon} />
+            <img
+              src={imageUrl}
+              alt={title}
+              className={styles.icon}
+              loading="lazy"
+            />
           )}
           <div className={styles.textGroup}>
             <h2 className={styles.title}>{title}</h2>

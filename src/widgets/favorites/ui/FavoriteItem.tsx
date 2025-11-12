@@ -10,7 +10,12 @@ export function FavoriteItem({ item, onDeleteClick }: Props) {
   return (
     <li className={styles.container}>
       <div className={styles.info}>
-        <img src={item.icon} alt={item.title} className={styles.icon} />
+        <img
+          src={item.icon}
+          alt={item.title}
+          className={styles.icon}
+          loading="lazy"
+        />
 
         <div className={styles.textWrapper}>
           <p className={styles.title}>{item.title}</p>

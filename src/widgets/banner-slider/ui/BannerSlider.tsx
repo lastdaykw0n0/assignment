@@ -23,6 +23,7 @@ export default function BannerSlider() {
             src={banner.image[LANG]}
             alt={banner.description?.[LANG] ?? ''}
             className={styles.bannerImage}
+            loading={idx === 0 ? 'eager' : 'lazy'}
           />
           <div className={styles.bannerIndex}>
             {idx + 1} / {banners.length}

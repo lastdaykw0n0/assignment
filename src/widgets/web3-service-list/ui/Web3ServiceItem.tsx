@@ -16,7 +16,12 @@ export function Web3ServiceItem({ item, onClick }: Props) {
   return (
     <li className={styles.container} onClick={onClick}>
       <div className={styles.iconWrapper}>
-        <img src={item.icon} alt={item.title} className={styles.icon} />
+        <img
+          src={item.icon}
+          alt={item.title}
+          className={styles.icon}
+          loading="lazy"
+        />
       </div>
 
       <div className={styles.content}>
