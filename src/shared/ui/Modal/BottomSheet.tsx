@@ -1,12 +1,13 @@
 import React from 'react';
 import styles from './BottomSheet.module.css';
+import type { Nullable } from '@/shared/types';
 
 interface BottomSheetProps {
   open: boolean;
   title: string;
   subtitle?: string;
   url?: string;
-  description?: string;
+  description?: Nullable<string>;
   imageUrl?: string;
   onClose: () => void;
   onGo?: () => void;
