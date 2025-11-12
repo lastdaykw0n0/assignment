@@ -1,5 +1,5 @@
 import styles from './BannerSlider.module.css';
-import { useBanners } from '@/entities/model/useBanners';
+import { useBanners } from '@/entities/banner-slider/model/useBanners';
 import { openLink } from '@/shared/utils/openLink';
 
 /* TODO: lang을 context로 주입 */

@@ -1,4 +1,4 @@
-import type { Banner } from '@/entities/model/banner.types';
+import type { Banner } from '@/entities/banner-slider/model/banner.types';
 
 export const mockBanners: Banner[] = [
   {
