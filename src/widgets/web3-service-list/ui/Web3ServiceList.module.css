@@ -43,3 +43,10 @@
   color: #888;
   font-size: 15px;
 }
+
+.virtualScrollContainer {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  -webkit-overflow-scrolling: touch;
+}
