@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { useTranslation } from 'react-i18next';
+import { useI18n } from '@/app/providers/i18n';
 import { useWeb3ServicesItems } from '@/features/web3-service/hooks/useWeb3Services';
 import { useWeb3ServiceSelection } from '@/features/web3-service/hooks/useWeb3ServiceSelection';
 import { filterItemsBySearch } from '@/features/web3-service/lib/filterWeb3Services';
@@ -7,12 +7,13 @@ import { Web3ServiceItem } from './Web3ServiceItem';
 import { Web3ServiceSkeleton } from './Web3ServiceSkeleton';
 import { BottomSheet } from '@/shared/ui/Modal/BottomSheet';
 import { SearchBar } from '@/shared/ui/SearchBar/SearchBar';
+import { LanguageToggle } from '@/shared/ui/LanguageToggle/LanguageToggle';
 import styles from './Web3ServiceList.module.css';
 
 const SKELETON_COUNT = 5;
 
 export function Web3ServiceList() {
-  const { i18n } = useTranslation();
+  const { language, t } = useI18n();
   const [searchQuery, setSearchQuery] = useState('');
   const { items, isLoading, isFetchingNextPage, bottomObserverRef } =
     useWeb3ServicesItems();
@@ -27,14 +28,14 @@ export function Web3ServiceList() {
   } = useWeb3ServiceSelection();
 
   const filteredItems = useMemo(
-    () => filterItemsBySearch(items, searchQuery, i18n.language),
-    [items, searchQuery, i18n.language]
+    () => filterItemsBySearch(items, searchQuery, language),
+    [items, searchQuery, language]
   );
 
   if (isLoading && items.length === 0) {
     return (
       <div className={styles.container}>
-        <h2 className={styles.title}>목록</h2>
+        <h2 className={styles.title}>{t('dapp_list_title')}</h2>
         {Array.from({ length: SKELETON_COUNT }).map((_, index) => (
           <Web3ServiceSkeleton key={`skeleton-${index}`} />
         ))}
@@ -45,12 +46,15 @@ export function Web3ServiceList() {
   return (
     <div className={styles.container}>
       <div className={styles.listContainer}>
-        <h2 className={styles.title}>목록</h2>
-        <SearchBar
-          value={searchQuery}
-          onChange={setSearchQuery}
-          placeholder="서비스 검색..."
-        />
+        <h2 className={styles.title}>{t('dapp_list_title')}</h2>
+        <div className={styles.searchContainer}>
+          <SearchBar
+            value={searchQuery}
+            onChange={setSearchQuery}
+            placeholder={t('search_placeholder')}
+          />
+          <LanguageToggle />
+        </div>
         <ul className={styles.list}>
           {filteredItems.length > 0 ? (
             <>
@@ -68,7 +72,7 @@ export function Web3ServiceList() {
               <div ref={bottomObserverRef} style={{ height: '1px' }} />
             </>
           ) : (
-            <li className={styles.emptyState}>검색 결과가 없습니다.</li>
+            <li className={styles.emptyState}>{t('empty_search_result')}</li>
           )}
         </ul>
       </div>

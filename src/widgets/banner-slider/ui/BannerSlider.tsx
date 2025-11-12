@@ -1,12 +1,12 @@
 import styles from './BannerSlider.module.css';
 import { useBanners } from '@/entities/banner-slider/model/useBanners';
 import { openLink } from '@/shared/utils/openLink';
-
-/* TODO: lang을 context로 주입 */
-const LANG = 'kr';
+import { useI18n } from '@/app/providers/i18n';
 
 export default function BannerSlider() {
   const { data: banners, isLoading } = useBanners();
+  const { language } = useI18n();
+  const lang = language === 'ko' ? 'kr' : 'en';
 
   if (isLoading) return <div>Loading...</div>;
   if (!banners || banners.length === 0) return null;
@@ -17,26 +17,26 @@ export default function BannerSlider() {
         <div
           key={banner.id}
           className={styles.bannerItem}
-          onClick={() => openLink(banner.link[LANG])}
+          onClick={() => openLink(banner.link[lang])}
         >
           <img
-            src={banner.image[LANG]}
-            alt={banner.description?.[LANG] ?? ''}
+            src={banner.image[lang]}
+            alt={banner.description?.[lang] ?? ''}
             className={styles.bannerImage}
             loading={idx === 0 ? 'eager' : 'lazy'}
           />
           <div className={styles.bannerIndex}>
             {idx + 1} / {banners.length}
           </div>
-          {banner.description && <p>{banner.description[LANG]}</p>}
+          {banner.description && <p>{banner.description[lang]}</p>}
           {banner.buttonText && (
             <button
               onClick={(e) => {
                 e.stopPropagation();
-                openLink(banner.link[LANG]);
+                openLink(banner.link[lang]);
               }}
             >
-              {banner.buttonText[LANG]}
+              {banner.buttonText[lang]}
             </button>
           )}
         </div>

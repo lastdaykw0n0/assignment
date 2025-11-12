@@ -5,5 +5,11 @@
   "dapp_list_title": "목록",
   "go_to_dapp": "서비스 바로가기",
   "button_cancel": "취소",
-  "button_confirm": "확인"
+  "button_confirm": "확인",
+  "search_placeholder": "서비스 검색...",
+  "empty_search_result": "검색 결과가 없습니다.",
+  "delete_confirm_title": "삭제 확인",
+  "delete_confirm_message": "정말 삭제하시겠습니까?",
+  "description": "설명",
+  "search_clear": "검색어 지우기"
 }

@@ -1,5 +1,4 @@
 import type { Web3ServiceItem } from '@/entities/web3-service/model/web3Service.types';
-import { i18n } from '@/app/providers/i18n';
 import type { Nullable } from '@/shared/types';
 
 /**
@@ -19,15 +18,16 @@ export function detectPlatform(): Nullable<'android' | 'iphone'> {
 
 /**
  * 현재 언어 감지
- * TODO: 언어 설정 관련 로직 추가
+ * localStorage에서 저장된 언어 설정 확인, 없으면 브라우저 언어 사용
  */
 export function getCurrentLanguage(): 'ko' | 'en' {
-  const language =
-    (i18n.language && i18n.language !== 'undefined' ? i18n.language : null) ||
-    navigator.language ||
-    'en';
+  const savedLanguage = localStorage.getItem('language') as 'ko' | 'en' | null;
+  if (savedLanguage && (savedLanguage === 'ko' || savedLanguage === 'en')) {
+    return savedLanguage;
+  }
 
-  return language.startsWith('ko') ? 'ko' : 'en';
+  const browserLanguage = navigator.language || 'en';
+  return browserLanguage.startsWith('ko') ? 'ko' : 'en';
 }
 
 /**
@@ -91,23 +91,25 @@ export function shouldShowService(
  * 언어, 플랫폼, 빌드환경 조건 확인하여 서비스 필터링
  */
 export function filterWeb3Services(
-  services: Web3ServiceItem[]
+  services: Web3ServiceItem[],
+  language?: 'ko' | 'en'
 ): Web3ServiceItem[] {
-  const language = getCurrentLanguage();
+  const currentLanguage = language ?? getCurrentLanguage();
   const platform = detectPlatform();
   const env = getCurrentEnv();
 
   return services.filter((service) =>
-    shouldShowService(service, language, platform, env)
+    shouldShowService(service, currentLanguage, platform, env)
   );
 }
 
 /**
  * 사용자 검색어로 서비스 필터링
- */ export function filterItemsBySearch(
+ */
+export function filterItemsBySearch(
   items: Web3ServiceItem[],
   searchQuery: string,
-  language: string
+  language: 'ko' | 'en'
 ): Web3ServiceItem[] {
   if (!searchQuery.trim()) {
     return items;
@@ -118,7 +120,7 @@ export function filterWeb3Services(
   return items.filter((item) => {
     const titleMatch = item.title.toLowerCase().includes(query);
 
-    const description = language.startsWith('ko') ? item.desc_kr : item.desc_en;
+    const description = language === 'ko' ? item.desc_kr : item.desc_en;
     const descriptionMatch = description
       ? description.toLowerCase().includes(query)
       : false;

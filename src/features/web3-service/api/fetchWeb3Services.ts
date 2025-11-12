@@ -11,6 +11,7 @@ const ITEMS_PER_PAGE = 3;
 export interface FetchWeb3ServicesParams {
   page: number;
   pageSize?: number;
+  language?: 'ko' | 'en';
 }
 
 export interface FetchWeb3ServicesResponse {
@@ -23,10 +24,10 @@ export async function fetchWeb3Services(
   params: FetchWeb3ServicesParams
 ): Promise<FetchWeb3ServicesResponse> {
   const pageSize = params.pageSize || ITEMS_PER_PAGE;
-  const { page } = params;
+  const { page, language } = params;
 
   if (USE_MOCK) {
-    const filteredServices = filterWeb3Services(web3ServiceData);
+    const filteredServices = filterWeb3Services(web3ServiceData, language);
 
     const startIdx = (page - 1) * pageSize;
     const endIdx = startIdx + pageSize;
@@ -46,6 +47,6 @@ export async function fetchWeb3Services(
 
   return {
     ...response,
-    items: filterWeb3Services(response.items),
+    items: filterWeb3Services(response.items, language),
   };
 }

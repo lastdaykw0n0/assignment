@@ -1,4 +1,5 @@
 import styles from './SearchBar.module.css';
+import { useI18n } from '@/app/providers/i18n';
 
 interface SearchBarProps {
   value: string;
@@ -6,11 +7,10 @@ interface SearchBarProps {
   placeholder?: string;
 }
 
-export function SearchBar({
-  value,
-  onChange,
-  placeholder = '',
-}: SearchBarProps) {
+export function SearchBar({ value, onChange, placeholder }: SearchBarProps) {
+  const { t } = useI18n();
+  const displayPlaceholder = placeholder ?? t('search_placeholder');
+
   return (
     <div className={styles.container}>
       <div className={styles.inputWrapper}>
@@ -42,14 +42,14 @@ export function SearchBar({
           className={styles.input}
           value={value}
           onChange={(e) => onChange(e.target.value)}
-          placeholder={placeholder}
+          placeholder={displayPlaceholder}
         />
         {value && (
           <button
             className={styles.clearButton}
             onClick={() => onChange('')}
             type="button"
-            aria-label="검색어 지우기"
+            aria-label={t('search_clear')}
           >
             <svg
               width="16"

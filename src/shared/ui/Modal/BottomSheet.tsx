@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './BottomSheet.module.css';
 import type { Nullable } from '@/shared/types';
+import { useI18n } from '@/app/providers/i18n';
 
 interface BottomSheetProps {
   open: boolean;
@@ -26,6 +27,8 @@ export const BottomSheet: React.FC<BottomSheetProps> = ({
   onClose,
   onGo,
 }) => {
+  const { t } = useI18n();
+
   if (!open) return null;
 
   return (
@@ -58,13 +61,13 @@ export const BottomSheet: React.FC<BottomSheetProps> = ({
 
         {description && (
           <div className={styles.descriptionBox}>
-            <h3 className={styles.sectionTitle}>Description</h3>
+            <h3 className={styles.sectionTitle}>{t('description')}</h3>
             <p className={styles.description}>{description}</p>
           </div>
         )}
 
         <button className={styles.goButton} onClick={onGo}>
-          Go
+          {t('go_to_dapp')}
         </button>
       </div>
     </div>

@@ -2,8 +2,7 @@ import { useEffect, useRef } from 'react';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { fetchWeb3Services } from '../api/fetchWeb3Services';
 import type { Web3ServiceItem } from '@/entities/web3-service/model/web3Service.types';
-import { getCurrentLanguage } from '../lib/filterWeb3Services';
-import { i18n } from '@/app/providers/i18n';
+import { useI18n } from '@/app/providers/i18n';
 
 export interface UseWeb3ServicesOptions {
   pageSize?: number;
@@ -14,11 +13,12 @@ const DEFAULT_PAGE_SIZE = 3;
 
 export function useWeb3Services(options: UseWeb3ServicesOptions = {}) {
   const { pageSize = DEFAULT_PAGE_SIZE } = options;
+  const { language } = useI18n();
 
   return useInfiniteQuery({
-    queryKey: ['web3-services', getCurrentLanguage(), i18n.language, pageSize],
+    queryKey: ['web3-services', language, pageSize],
     queryFn: ({ pageParam = 1 }) =>
-      fetchWeb3Services({ page: pageParam, pageSize }),
+      fetchWeb3Services({ page: pageParam, pageSize, language }),
     getNextPageParam: (lastPage, allPages) => {
       if (!lastPage.hasMore) return undefined;
       return allPages.length + 1;

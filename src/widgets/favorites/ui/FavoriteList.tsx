@@ -1,15 +1,17 @@
 import { useFavorite } from '@/features/favorite/hooks/useFavorite';
 import { FavoriteItem } from './FavoriteItem.tsx';
 import ConfirmModal from '@/shared/ui/Modal/ConfirmModal.tsx';
+import { useI18n } from '@/app/providers/i18n';
 import styles from './FavoriteList.module.css';
 
 const FavoriteList = () => {
   const { data, selectedId, openConfirm, closeConfirm, confirmDelete } =
     useFavorite();
+  const { t } = useI18n();
 
   return (
     <>
-      <h2 className={styles.title}>즐겨찾기</h2>
+      <h2 className={styles.title}>{t('dapp_favorite_title')}</h2>
       <ul>
         {data?.map((item) => (
           <FavoriteItem
@@ -21,10 +23,10 @@ const FavoriteList = () => {
       </ul>
       {selectedId && (
         <ConfirmModal
-          title="삭제 확인"
-          message="정말 삭제하시겠습니까?"
-          confirmText="삭제"
-          cancelText="취소"
+          title={t('delete_confirm_title')}
+          message={t('delete_confirm_message')}
+          confirmText={t('dapp_favorite_delete')}
+          cancelText={t('button_cancel')}
           onConfirm={confirmDelete}
           onCancel={closeConfirm}
         />

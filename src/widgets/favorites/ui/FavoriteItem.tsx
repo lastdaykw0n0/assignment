@@ -1,5 +1,6 @@
 import styles from './FavoriteItem.module.css';
 import type { FavoriteItem } from '@/entities/favorite/model/favorite.types';
+import { useI18n } from '@/app/providers/i18n';
 
 type Props = {
   item: FavoriteItem;
@@ -7,6 +8,8 @@ type Props = {
 };
 
 export function FavoriteItem({ item, onDeleteClick }: Props) {
+  const { t } = useI18n();
+
   return (
     <li className={styles.container}>
       <div className={styles.info}>
@@ -25,7 +28,7 @@ export function FavoriteItem({ item, onDeleteClick }: Props) {
 
       <div className={styles.action}>
         <button className={styles.deleteButton} onClick={onDeleteClick}>
-          삭제
+          {t('dapp_favorite_delete')}
         </button>
       </div>
     </li>

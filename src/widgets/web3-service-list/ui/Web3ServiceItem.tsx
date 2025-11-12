@@ -1,6 +1,6 @@
 import styles from './Web3ServiceItem.module.css';
 import type { Web3ServiceItem } from '@/entities/web3-service/model/web3Service.types';
-import { useTranslation } from 'react-i18next';
+import { useI18n } from '@/app/providers/i18n';
 
 type Props = {
   item: Web3ServiceItem;
@@ -8,10 +8,8 @@ type Props = {
 };
 
 export function Web3ServiceItem({ item, onClick }: Props) {
-  const { i18n } = useTranslation();
-  const description = i18n.language.startsWith('ko')
-    ? item.desc_kr
-    : item.desc_en;
+  const { language } = useI18n();
+  const description = language === 'ko' ? item.desc_kr : item.desc_en;
 
   return (
     <li className={styles.container} onClick={onClick}>

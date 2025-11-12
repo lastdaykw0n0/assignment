@@ -12,6 +12,14 @@
   padding: 12px;
 }
 
+.searchContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  margin-bottom: 8px;
+}
+
 .listContainer {
   width: 100%;
   max-width: 100%;

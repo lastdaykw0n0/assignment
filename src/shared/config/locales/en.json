@@ -5,5 +5,11 @@
   "dapp_list_title": "List",
   "go_to_dapp": "Go",
   "button_cancel": "Cancel",
-  "button_confirm": "Confirm"
+  "button_confirm": "Confirm",
+  "search_placeholder": "Search services...",
+  "empty_search_result": "No search results found.",
+  "delete_confirm_title": "Delete Confirmation",
+  "delete_confirm_message": "Are you sure you want to delete?",
+  "description": "Description",
+  "search_clear": "Clear search"
 }
