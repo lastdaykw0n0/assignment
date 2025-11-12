@@ -18,7 +18,6 @@ export function detectPlatform(): Nullable<'android' | 'iphone'> {
 
 /**
  * 현재 언어 감지
- * localStorage에서 저장된 언어 설정 확인, 없으면 브라우저 언어 사용
  */
 export function getCurrentLanguage(): 'ko' | 'en' {
   const savedLanguage = localStorage.getItem('language') as 'ko' | 'en' | null;
