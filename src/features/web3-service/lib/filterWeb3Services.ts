@@ -87,6 +87,9 @@ export function shouldShowService(
   return true;
 }
 
+/**
+ * 언어, 플랫폼, 빌드환경 조건 확인하여 서비스 필터링
+ */
 export function filterWeb3Services(
   services: Web3ServiceItem[]
 ): Web3ServiceItem[] {
@@ -97,4 +100,29 @@ export function filterWeb3Services(
   return services.filter((service) =>
     shouldShowService(service, language, platform, env)
   );
+}
+
+/**
+ * 사용자 검색어로 서비스 필터링
+ */ export function filterItemsBySearch(
+  items: Web3ServiceItem[],
+  searchQuery: string,
+  language: string
+): Web3ServiceItem[] {
+  if (!searchQuery.trim()) {
+    return items;
+  }
+
+  const query = searchQuery.toLowerCase().trim();
+
+  return items.filter((item) => {
+    const titleMatch = item.title.toLowerCase().includes(query);
+
+    const description = language.startsWith('ko') ? item.desc_kr : item.desc_en;
+    const descriptionMatch = description
+      ? description.toLowerCase().includes(query)
+      : false;
+
+    return titleMatch || descriptionMatch;
+  });
 }
