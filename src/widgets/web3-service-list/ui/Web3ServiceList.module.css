@@ -28,3 +28,10 @@
   box-sizing: border-box;
   overflow-x: hidden;
 }
+
+.emptyState {
+  padding: 40px 12px;
+  text-align: center;
+  color: #888;
+  font-size: 15px;
+}
