@@ -11,5 +11,7 @@
   "delete_confirm_title": "삭제 확인",
   "delete_confirm_message": "정말 삭제하시겠습니까?",
   "description": "설명",
-  "search_clear": "검색어 지우기"
+  "search_clear": "검색어 지우기",
+  "error_loading": "데이터를 불러오는 중 오류가 발생했습니다.",
+  "error_retry": "다시 시도"
 }

@@ -11,5 +11,7 @@
   "delete_confirm_title": "Delete Confirmation",
   "delete_confirm_message": "Are you sure you want to delete?",
   "description": "Description",
-  "search_clear": "Clear search"
+  "search_clear": "Clear search",
+  "error_loading": "An error occurred while loading data.",
+  "error_retry": "Retry"
 }

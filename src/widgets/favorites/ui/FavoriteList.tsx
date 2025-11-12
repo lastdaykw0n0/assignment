@@ -5,22 +5,48 @@ import { useI18n } from '@/app/providers/i18n';
 import styles from './FavoriteList.module.css';
 
 const FavoriteList = () => {
-  const { data, selectedId, openConfirm, closeConfirm, confirmDelete } =
-    useFavorite();
+  const {
+    data,
+    isLoading,
+    error,
+    refetch,
+    selectedId,
+    openConfirm,
+    closeConfirm,
+    confirmDelete,
+  } = useFavorite();
   const { t } = useI18n();
+
+  if (error) {
+    return (
+      <>
+        <h2 className={styles.title}>{t('dapp_favorite_title')}</h2>
+        <div className={styles.errorContainer}>
+          <p className={styles.errorMessage}>{t('error_loading')}</p>
+          <button className={styles.retryButton} onClick={() => refetch()}>
+            {t('error_retry')}
+          </button>
+        </div>
+      </>
+    );
+  }
 
   return (
     <>
       <h2 className={styles.title}>{t('dapp_favorite_title')}</h2>
-      <ul>
-        {data?.map((item) => (
-          <FavoriteItem
-            key={item.id}
-            item={item}
-            onDeleteClick={() => openConfirm(item.id)}
-          />
-        ))}
-      </ul>
+      {isLoading ? (
+        <div>Loading...</div>
+      ) : (
+        <ul>
+          {data?.map((item) => (
+            <FavoriteItem
+              key={item.id}
+              item={item}
+              onDeleteClick={() => openConfirm(item.id)}
+            />
+          ))}
+        </ul>
+      )}
       {selectedId && (
         <ConfirmModal
           title={t('delete_confirm_title')}

@@ -35,6 +35,8 @@ export function useWeb3ServicesItems(options: UseWeb3ServicesOptions = {}): {
   hasNextPage: boolean;
   fetchNextPage: () => void;
   bottomObserverRef: React.RefObject<HTMLDivElement | null>;
+  error: Error | null;
+  refetch: () => void;
 } {
   const { enableInfiniteScroll = true, ...queryOptions } = options;
 
@@ -82,5 +84,7 @@ export function useWeb3ServicesItems(options: UseWeb3ServicesOptions = {}): {
     hasNextPage,
     fetchNextPage,
     bottomObserverRef,
+    error: query.error as Error | null,
+    refetch: query.refetch,
   };
 }

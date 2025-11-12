@@ -5,11 +5,12 @@ import { useI18n } from '@/app/providers/i18n';
 import { OptimizedImage } from '@/shared/ui/OptimizedImage';
 
 export default function BannerSlider() {
-  const { data: banners, isLoading } = useBanners();
-  const { language } = useI18n();
+  const { data: banners, isLoading, error } = useBanners();
+  const { language, t } = useI18n();
   const lang = language === 'ko' ? 'kr' : 'en';
 
   if (isLoading) return <div>Loading...</div>;
+  if (error) return null;
   if (!banners || banners.length === 0) return null;
 
   return (

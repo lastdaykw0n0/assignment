@@ -15,8 +15,14 @@ const SKELETON_COUNT = 5;
 export function Web3ServiceList() {
   const { language, t } = useI18n();
   const [searchQuery, setSearchQuery] = useState('');
-  const { items, isLoading, isFetchingNextPage, bottomObserverRef } =
-    useWeb3ServicesItems();
+  const {
+    items,
+    isLoading,
+    isFetchingNextPage,
+    bottomObserverRef,
+    error,
+    refetch,
+  } = useWeb3ServicesItems();
 
   const {
     selectedItem,
@@ -39,6 +45,22 @@ export function Web3ServiceList() {
         {Array.from({ length: SKELETON_COUNT }).map((_, index) => (
           <Web3ServiceSkeleton key={`skeleton-${index}`} />
         ))}
+      </div>
+    );
+  }
+
+  if (error && items.length === 0) {
+    return (
+      <div className={styles.container}>
+        <div className={styles.listContainer}>
+          <h2 className={styles.title}>{t('dapp_list_title')}</h2>
+          <div className={styles.errorContainer}>
+            <p className={styles.errorMessage}>{t('error_loading')}</p>
+            <button className={styles.retryButton} onClick={() => refetch()}>
+              {t('error_retry')}
+            </button>
+          </div>
+        </div>
       </div>
     );
   }

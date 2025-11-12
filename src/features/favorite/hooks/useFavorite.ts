@@ -4,7 +4,7 @@ import { useDeleteFavorite } from './useDeleteFavorite';
 import type { Nullable } from '@/shared/types';
 
 export function useFavorite() {
-  const { data, isLoading } = useFavoritesItems();
+  const { data, isLoading, error, refetch } = useFavoritesItems();
   const deleteMutation = useDeleteFavorite();
 
   const [selectedId, setSelectedId] = useState<Nullable<string>>(null);
@@ -12,6 +12,8 @@ export function useFavorite() {
   return {
     data,
     isLoading,
+    error,
+    refetch,
     selectedId,
     openConfirm: (id: string) => setSelectedId(id),
     closeConfirm: () => setSelectedId(null),
