@@ -1,0 +1,67 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 12px 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.info {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex: 1;
+}
+
+.icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  object-fit: cover;
+  background: #f3f3f3;
+}
+
+.textWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0; /* ellipsis 작동 위해 필요 */
+}
+
+.title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #222;
+  max-width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.url {
+  font-size: 13px;
+  color: #888;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.deleteButton {
+  border: none;
+  background: transparent;
+  padding: 6px 6px;
+  font-size: 13px;
+  color: #888;
+  cursor: pointer;
+}
+
+.deleteButton:hover {
+  opacity: 0.6;
+}
